@@ -1,0 +1,22 @@
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
+                                 http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
+             version="2.1">
+
+    <persistence-unit name="PERSISTENCE" transaction-type="JTA">
+        <jta-data-source>jdbc/jeeDataSource</jta-data-source>
+
+        <!-- Spécifier les classes d'entité -->
+        <class>entity.User</class>
+        <class>entity.Role</class>
+
+
+        <properties>
+            <property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(ForeignKeys=true)"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
+            <property name="hibernate.show_sql" value="true" />
+            <property name="jakarta.persistence.schema-generation.database.action" value="update"/>
+        </properties>
+    </persistence-unit>
+</persistence>
