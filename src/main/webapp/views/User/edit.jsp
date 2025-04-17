@@ -33,6 +33,10 @@
 
         <label>Password</label>
         <input type="password" class="form-control" name="password" value="${user.password}">
+        <br>
+
+        <label>Email </label>
+        <input type="email" class="form-control" name="email" value="${user.email}">
 
         <button class="btn btn-info" name="save" type="submit">Update</button>
         <button class="btn btn-danger" name="save" type="reset">Retour</button>

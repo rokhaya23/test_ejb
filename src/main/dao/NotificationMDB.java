@@ -1,0 +1,46 @@
+package dao;
+
+
+import javax.ejb.ActivationConfigProperty;
+import javax.ejb.EJB;
+import javax.ejb.MessageDriven;
+import javax.jms.JMSException;
+import javax.jms.MapMessage;
+import javax.jms.Message;
+import javax.jms.MessageListener;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+@MessageDriven(activationConfig = {
+        @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue"),
+        @ActivationConfigProperty(propertyName = "destination", propertyValue = "jms/NotificationQueue")
+})
+public class NotificationMDB implements MessageListener {
+
+    private static final Logger logger = LogManager.getLogger(NotificationMDB.class.getName());
+
+    @EJB
+    private NotificationService notificationService;
+
+    @Override
+    public void onMessage(Message message) {
+        try {
+            if (message instanceof MapMessage) {
+                MapMessage mapMessage = (MapMessage) message;
+                String type = mapMessage.getString("type");
+
+                if ("USER_CREATED".equals(type)) {
+                    int userId = mapMessage.getInt("userId");
+                    String username = mapMessage.getString("username");
+                    String email = mapMessage.getString("email");
+                    String password = mapMessage.getString("password");
+
+                    logger.info("Processing user creation notification for user ID: " + userId);
+                    notificationService.sendUserCreationNotification(email, username, password);
+                }
+            }
+        } catch (JMSException e) {
+            logger.error("Error processing notification message", e);
+        }
+    }
+}

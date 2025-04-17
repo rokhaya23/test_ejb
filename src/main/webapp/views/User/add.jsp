@@ -21,6 +21,10 @@
     <input type="number" class="form-control" name="age">
     <br>
 
+    <label>Email </label>
+    <input type="email" class="form-control" name="email">
+    <br>
+
     <label>Username</label>
     <input type="text" class="form-control" name="username">
     <br>
@@ -31,8 +35,8 @@
 
     <label>Roles </label>
     <select name="role" class="form-control">
+        <option value="" selected disabled>Choisir un role</option>
         <c:forEach items="${roles}" var="role" >
-            <option value="" selected disabled>Choisir un role</option>
         <option value="${role.id}"> ${role.name}  </option>
         </c:forEach>
         </select>

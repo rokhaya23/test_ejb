@@ -28,6 +28,7 @@
             <td>NOM</td>
             <td>PRENOM</td>
             <td>AGE</td>
+            <td>Email</td>
             <td>ROLE</td>
             <td>ACTIONS</td>
         </tr>
@@ -36,6 +37,7 @@
                 <td>${user.nom}</td>
                 <td>${user.prenom}</td>
                 <td>${user.age}</td>
+                <td>${user.email}</td>
                 <td>${user.role.name}</td>
                 <td>
                     <a class="btn btn-primary" href="user?action=edit&id=${user.id}">Modifier</a>

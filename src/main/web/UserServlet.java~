@@ -125,7 +125,6 @@ public class UserServlet extends HttpServlet {
                         .age(Integer.parseInt(req.getParameter("age")))
                         .username(req.getParameter("username"))
                         .password(req.getParameter("password"))
-                        .email(req.getParameter("email"))
                         .role(roleRepository.getById(Integer.parseInt(req.getParameter("role"))))
                         .build();
                 userRepository.insert(user);
@@ -138,7 +137,6 @@ public class UserServlet extends HttpServlet {
                         .nom(req.getParameter("nom"))
                         .username(req.getParameter("username"))
                         .password(req.getParameter("password"))
-                        .email(req.getParameter("email"))
                         .age(Integer.parseInt(req.getParameter("age")))
                         .build();
                 userRepository.update(user);

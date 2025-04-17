@@ -32,7 +32,7 @@ public class Initialiseur {
                         .findFirst()
                         .orElseGet(() -> {
                             Role r = new Role();
-                            r.setName("ADMIN");
+                            r.setName("admin");
                             entityManager.persist(r);
                             return r;
                         });
@@ -43,7 +43,8 @@ public class Initialiseur {
                 u.setPrenom("Root");
                 u.setAge(23);
                 u.setUsername("admin");
-                u.setPassword("admin123"); // Tu peux ajouter du hachage ici
+                u.setPassword("admin123");
+                u.setEmail("admin@gmail.com");
                 u.setRole(adminRole);
 
                 entityManager.persist(u);
